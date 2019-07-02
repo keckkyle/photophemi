@@ -1,33 +1,246 @@
-.App {
+.status {
+  font-family: 'Comfortaa', cursive;
+  position: absolute;
+  left: 150px;
+  z-index: 1;
+  padding: 1em;
+}
+
+.navbar{
+  background:rgb(240,240,240)
+}
+a.nav-link{
+  font-family: 'Comfortaa', cursive;
+}
+
+a.navbar-brand {
+  font-family: 'Righteous', cursive;
+}
+
+.nav-link{
+  cursor: pointer;
+}
+
+/* Login display */
+
+.modal{
+  background: rgba(0,0,0,0.7);
+  background: linear-gradient(0deg, rgba(27,177,251,0.1) 10%, rgba(0,0,0,0.7) 50%);
+  font-family: 'Comfortaa', cursive;
+}
+
+.modal-header, .modal-body, .modal-footer {
+  background: rgb(240,240,240);
+}
+
+.modalLink {
+  color: rgb(21,127,251);
+  cursor: pointer;
+}
+
+.modal-header {
+  font-family: 'Righteous', cursive;
+}
+
+input {
+  display: block;
+  width: 100%;
+  height: calc(1.5em + .75rem + 2px);
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #495057;
+  background-color:#fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: .25rem;
+  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out
+}
+
+input:focus{
+  outline: 0;
+  border-color: rgb(21,127,251);
+  box-shadow: 0 0 0 0.2rem rgba(21,127,251,0.25)
+}
+
+.loginInput:focus{
+  outline: 0;
+  border-color: rgb(255,0,0);
+  box-shadow: 0 0 0 0.2rem rgba(255,0,0,0.25)
+}
+
+.valid:focus{
+  outline: 0;
+  border-color: rgb(44, 218, 93);
+  box-shadow: 0 0 0 0.2rem rgba(44,218,93,0.25)
+}
+
+.form-control:focus{
+  border-color: rgb(255,0,0);
+  box-shadow: 0 0 0 0.2rem rgba(255, 0, 0, 0.25);
+}
+
+/* HomePage */
+
+.hpUserDisplay{
+  display: flex;
+  flex-direction: row;
+  background: rgb(240,240,240);
+  border: 1px solid rgb(240,240,240);
+  border-radius: 10px;
+  margin: 5px 0;
+  min-height: 25vh;
+}
+
+.hpUserImg {
+  border-radius: 10px 0;
+}
+
+.hpAvatar {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: space-between;
+  width: 25%;
+  font-family: 'Comfortaa', cursive;
+}
+
+.hpAvatar a {
+  color: black;
+  font-weight: bold;
+}
+
+.hpAvatar a:hover{
+  color: black;
+  text-decoration: none;
+}
+
+/* User Profile Page  */
+
+.profilePageHead {
+  font-family: 'Comfortaa', cursive;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: .5rem;
+  width: 100%;
+}
+
+.profilePageHead h1 {
+  font-family: 'Righteous', cursive;
+  padding-left: 3%;
+}
+
+.profilePageHead img {
+  min-height: 100px;
+  height: 25vh;
+}
+
+.userInfo {
+  width: 100%;
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.profilePageHead button {
+  margin-left: 3%;
+  align-self: flex-end;
+}
+
+/* image upload form */
+
+.imageUpload {
+  font-family: 'Comfortaa', cursive;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.fileinput {
+  opacity: 0;
+  position: absolute;
+  pointer-events: none;
+
+}
+
+.fileinput + label {
+  background-color: rgb(21,127,251);
+  color: #fff;
+  display: inline-block;
+  font-weight: 400;
+  text-align: center;
+  vertical-align: middle;
+  user-select: none;
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  border-radius: .25rem;
+  transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+.fileinput:focus + label, .fileinput + label:hover{
+  background: #0069d9;
+} 
+
+/* Square image display on hompage and user profile */
+
+.userImages{
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.square {
+  position: relative;
+  display: inline-block;
+  width: 23%;
+  margin: 1%;
+  background: rgba(220,220,220,0.5);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.square:after {
+  content: '';
+  display: block;
+  padding-bottom: 100%;
+}
+
+.inSquare {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
-}
+/* responsive sizing */
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+@media (max-width: 1100px){
+  .square {
+     width: 31%;
   }
 }
+
+@media (max-width: 767px) {
+  .square {
+     width: 48%;
+  }
+}
+
+@media (max-width: 500px) {
+  .square {
+     width: 80%;
+  }
+  .userImages{
+     justify-content: center;
+  }
+  .hpAvatar {
+     width: 40%
+  }
+}
+
