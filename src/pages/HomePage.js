@@ -14,10 +14,10 @@ class HomePage extends React.Component {
   }
 
   componentDidMount() {
-    axios.get('https://insta.nextacademy.com/api/v1/users')
+    axios.get('https://picture-me.herokuapp.com/api/v1/users')
     .then(result => {
       this.setState({
-        users: result.data,
+        users: result.data.data,
         isLoading: false,
       })
     })

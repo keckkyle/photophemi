@@ -4,6 +4,8 @@ import axios from 'axios';
 
 class ModalExample extends React.Component {
 state = {
+  firstname: '',
+  lastname: '',
   username: '',
   email: '',
   password: '',
@@ -14,6 +16,8 @@ state = {
 // clear input fields 
 clearInput = () => {
   this.setState({
+    firstname: '',
+    lastname: '',
     username: '',
     email: '',
     password: '',
@@ -44,22 +48,22 @@ handleOnClick = () => {
 }
 
 submitLogin = () => {
-  const {email, password} = this.state
+  const {username, password} = this.state
   this.props.toggle()
-  this.props.userSignIn(email, password)
+  this.props.userSignIn(username, password)
   this.clearInput()
 }
 
 submitSignUp = () => {
-  const {username, email, password} = this.state
+  const {username, email, password, firstname, lastname} = this.state
   this.props.toggle()
-  this.props.userSignUp(username, email, password)
+  this.props.userSignUp(username, email, password, firstname, lastname)
   this.clearInput()
 }
 
 handleUsernameCheck = (value) => {
   if(value.length > 6) {
-    axios.get(`https://insta.nextacademy.com/api/v1/users/check_name?username=${value}`)
+    axios.get(`https://picture-me.herokuapp.com/api/v1/users/check_name?username=${value}`)
     .then(response => {
       if (response.data.valid) {
         this.setState({
@@ -91,12 +95,12 @@ validateSignUp = () => (
   this.state.validUsername && this.validateEmail() && this.state.password.length > 8 && this.state.password === this.state.confirmPassword ? true : false)
 
 validateLogin = () => (
-  this.validateEmail() && this.state.password.length > 1 ? true : false)
+  this.state.username.length > 1 && this.state.password.length > 1 ? true : false)
 
 
 
   render() {
-    const {email, password, username, confirmPassword, validUsername} = this.state;
+    const {email, password, username, confirmPassword, validUsername, firstname, lastname} = this.state;
     const {modal, toggle, className, signUp} = this.props
     return (
       <div>
@@ -114,15 +118,15 @@ validateLogin = () => (
                 <ModalBody>
                 <form>
                   <div className="form-group">
-                    <label htmlFor='inputEmail'>
-                      Email
+                    <label htmlFor='inputUsername'>
+                      Username
                     </label>
                     <input 
-                      type='email' 
-                      className={this.validateEmail() ? 'valid' : 'loginInput'} id='inputEmail' 
-                      name='email' 
+                      type='text' 
+                      id='inputUsername' 
+                      name='username' 
                       onChange={this.handleInputChange} 
-                      value={email} 
+                      value={username} 
                     />
                   </div>
                   <div className="form-group">
@@ -131,7 +135,6 @@ validateLogin = () => (
                     </label>
                     <input 
                       type='password' 
-                      // className={password.length > 8 ? 'valid' : 'loginInput'} 
                       id='inputPassword' 
                       name='password' 
                       onChange={this.handleInputChange} 
@@ -165,6 +168,30 @@ validateLogin = () => (
                 </ModalHeader>
                 <ModalBody>
                 <form>
+                  <div className="form-group">
+                    <label htmlFor='inputFirstName'>
+                      First Name
+                    </label>
+                    <input 
+                      type='text' 
+                      id='inputFirstName' 
+                      name='firstname' 
+                      onChange={this.handleInputChange} 
+                      value={firstname}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor='inputLastName'>
+                      Last Name
+                    </label>
+                    <input 
+                      type='text' 
+                      id='inputLastName' 
+                      name='lastname' 
+                      onChange={this.handleInputChange} 
+                      value={lastname}
+                    />
+                  </div>
                   <div className="form-group">
                     <label htmlFor='inputUsername'>
                       Username

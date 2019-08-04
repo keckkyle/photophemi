@@ -17,11 +17,27 @@ class App extends React.Component {
     errorMessage: ''
   }
 
-userSignIn = (email, password) => {
-  axios.post('https://insta.nextacademy.com/api/v1/login', {
-    email: email,
+getUser = () => {
+  let JWT = localStorage.getItem('JWT')
+  axios.get('http://picture-me.herokuapp.com/api/v1/users/current_user', {
+    headers: {
+      Authorization: `Bearer ${JWT}`
+    }
+  }).then(response =>{
+    this.setState({
+      currentUser: response.data.user
+    })
+  }).catch(error => {
+    console.log(error.response)
+  })
+}
+
+userSignIn = (username, password) => {
+  axios.post('https://picture-me.herokuapp.com/api/v1/login', {
+    username: username,
     password: password,
 }).then(response => {
+  console.log(response)
     let JWT = response.data.auth_token
     localStorage.setItem('JWT', JWT)
     this.setState({
@@ -33,12 +49,14 @@ userSignIn = (email, password) => {
 })
 }
 
-userSignUp = (username, email, password) => {
-  axios.post('https://insta.nextacademy.com/api/v1/users/',
+userSignUp = (username, email, password, firstname, lastname) => {
+  axios.post('https://picture-me.herokuapp.com/api/v1/users/',
     {
       username: username,
       email: email,
       password: password,
+      first_name: firstname,
+      last_name: lastname
     })
 .then(response => {
   let JWT = response.data.auth_token
@@ -87,15 +105,17 @@ toggleSignUp = () => {
 
 
 
+ 
   render(){
     return (
       <>
+      {(this.state.currentUser === null && localStorage.JWT !== undefined) ? this.getUser():<></> }
         <div className='status'>
           {this.state.currentUser !== null ? 
             <div>
               Hello {this.state.currentUser.username}.
             </div>
-            : 
+            :
             this.state.errorMessage !== '' ? 
             this.state.errorMessage 
             :
