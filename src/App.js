@@ -19,7 +19,7 @@ class App extends React.Component {
 
 getUser = () => {
   let JWT = localStorage.getItem('JWT')
-  axios.get('http://picture-me.herokuapp.com/api/v1/users/current_user', {
+  axios.get('https://picture-me.herokuapp.com/api/v1/users/current_user', {
     headers: {
       Authorization: `Bearer ${JWT}`
     }
