@@ -13,7 +13,7 @@ class UserImages extends React.Component {
    }
   
    componentDidMount() {
-      axios.get(`https://insta.nextacademy.com/api/v1/images?userId=${this.props.userId}`)
+      axios.get(`https://picture-me.herokuapp.com/api/v1/images?userId=${this.props.userId}`)
       .then(result => {
          this.setState({
             images: result.data,

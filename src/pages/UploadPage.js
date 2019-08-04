@@ -30,8 +30,8 @@ class UploadPage extends React.Component {
       e.preventDefault()
       let JWT = localStorage.getItem("JWT")
       let formData = new FormData()
-      formData.append("image", this.state.imageFile)
-      axios.post('https://insta.nextacademy.com/api/v1/images/', formData, {
+      formData.append("user_file", this.state.imageFile)
+      axios.post('https://picture-me.herokuapp.com/api/v1/images/', formData, {
          headers: {Authorization : `Bearer ${JWT}`}
       })
       .then(response => {

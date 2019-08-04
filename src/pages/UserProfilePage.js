@@ -14,11 +14,11 @@ class UserProfilePage extends React.Component {
    }
 
    componentDidMount() {
-      axios.get(`https://insta.nextacademy.com/api/v1/users/${this.state.userId}`)
+      axios.get(`https://picture-me.herokuapp.com/api/v1/users/${this.state.userId}`)
       .then(result => {
          this.setState({
             username: result.data.username,
-            profileImage: result.data.profileImage,
+            profileImage: result.data.profile_image,
             isLoading: false,
          })
       })

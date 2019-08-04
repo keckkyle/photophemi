@@ -1,6 +1,5 @@
 import React from 'react'
 import {Container, Button} from 'reactstrap'
-import HomePage from './HomePage'
 import UploadPage from './UploadPage'
 import MyImages from '../containers/MyImages'
 
@@ -28,7 +27,7 @@ class MyProfilePage extends React.Component {
             {this.props.currentUser !== null ?
             <>
                <div className="profilePageHead">
-                  <img src={this.props.currentUser.profile_picture} alt="profile"/>
+                  <img src={this.props.currentUser.profileImage} alt="profile"/>
                   <div className="userInfo">
                      <h1>{this.props.currentUser.username}</h1>
                      <Button onClick={this.toggleUploadForm}>{this.state.uploadBtn}</Button>
@@ -46,7 +45,6 @@ class MyProfilePage extends React.Component {
                      <p>Please log in or sign up to view your profile page.</p>
                   </div>
                </div>
-               <HomePage />
             </>
             }
          </>

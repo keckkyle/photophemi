@@ -13,7 +13,7 @@ class MyImages extends React.Component {
 
   componentDidMount() {
      let JWT = localStorage.getItem('JWT')
-     axios.get('https://insta.nextacademy.com/api/v1/images/me', {
+     axios.get('https://picture-me.herokuapp.com/api/v1/images/me', {
         headers: {
            Authorization: `Bearer ${JWT}`
         }
